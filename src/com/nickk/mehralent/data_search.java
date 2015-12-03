@@ -41,7 +41,6 @@ public class data_search extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        clearbtn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         tfserial = new javax.swing.JTextField();
         tfdate = new javax.swing.JTextField();
@@ -49,6 +48,7 @@ public class data_search extends javax.swing.JFrame {
         tfamt = new javax.swing.JTextField();
         tfvat = new javax.swing.JTextField();
         tffinal = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Search For Data");
@@ -73,13 +73,6 @@ public class data_search extends javax.swing.JFrame {
             }
         });
 
-        clearbtn.setText("CLEAR EVERYTHING");
-        clearbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearbtnActionPerformed(evt);
-            }
-        });
-
         jButton3.setText("CLOSE THIS");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,12 +80,18 @@ public class data_search extends javax.swing.JFrame {
             }
         });
 
+        tfdate.setEditable(false);
+
+        tfhosp.setEditable(false);
+
+        tfamt.setEditable(false);
         tfamt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 tfamtCaretUpdate(evt);
             }
         });
 
+        tfvat.setEditable(false);
         tfvat.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 tfvatCaretUpdate(evt);
@@ -100,6 +99,13 @@ public class data_search extends javax.swing.JFrame {
         });
 
         tffinal.setEditable(false);
+
+        jButton2.setText("RESET FORM");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,7 +124,7 @@ public class data_search extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfserial)
+                            .addComponent(tfserial, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                             .addComponent(tfdate)
                             .addComponent(tfhosp)
                             .addComponent(tfamt)
@@ -126,9 +132,9 @@ public class data_search extends javax.swing.JFrame {
                             .addComponent(tffinal)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                        .addComponent(clearbtn)
-                        .addGap(53, 53, 53)
+                        .addGap(101, 101, 101)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
         );
@@ -159,24 +165,17 @@ public class data_search extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tffinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(clearbtn)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton2))
                 .addGap(22, 22, 22))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void clearbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearbtnActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        new data_search().setVisible(true);
-        tfserial.requestFocus();
-    }//GEN-LAST:event_clearbtnActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -185,46 +184,52 @@ public class data_search extends javax.swing.JFrame {
 
     private void tfamtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_tfamtCaretUpdate
         // TODO add your handling code here:
-        double fnla;
-        fnla = Double.parseDouble(tfamt.getText());
-        tffinal.setText(""+fnla);
+        
     }//GEN-LAST:event_tfamtCaretUpdate
 
     private void tfvatCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_tfvatCaretUpdate
         // TODO add your handling code here:
-        double finalam,vat,am;
-        am = Double.parseDouble(tfamt.getText());
-        vat = Double.parseDouble(tfvat.getText());
-        finalam = (vat/100)*am;
-        tffinal.setText(""+finalam);
+        
     }//GEN-LAST:event_tfvatCaretUpdate
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         MainClass mc = new MainClass();
-       int Serial = Integer.parseInt(tfserial.getText());
-       String data,hosp;
-       data = tfdate.getText();
-       hosp = tfhosp.getText();
-       double amt,vat,famt;
-       amt = Double.parseDouble(tfamt.getText());
-       vat = Double.parseDouble(tfvat.getText());
-       famt = Double.parseDouble(tffinal.getText());
-       // Initiate Db Connection Now
-       try{
-           Class.forName(mc.cl);
-           Connection con  = DriverManager.getConnection(mc.url,mc.user,mc.pwd);
-           Statement stmt = con.createStatement();
-           String q;
-           q = "insert into main_data values('"+Serial+"','"+data+"','"+hosp+"','"+amt+"','"+vat+"','"+famt+"');";
-           stmt.executeUpdate(q);
-           JOptionPane.showMessageDialog(this,"Record Updated Successfully");
-           clearbtn.doClick();
-       }
-       catch (Exception e){
-           
-       }
+        String tts;
+        tts = tfserial.getText();
+        try{
+            Class.forName(mc.cl);
+            Connection con = DriverManager.getConnection(mc.url,mc.user,mc.pwd);
+            Statement stmt = con.createStatement();
+            String q = "select * from main_data where serial = '"+tts+"';";
+            ResultSet rs =  stmt.executeQuery(q);
+            if(rs.next()==true){
+                String d,h,t,v,ta;
+                d = rs.getString("Date");
+                h = rs.getString("Hospital_Name");
+                t = rs.getString("Amount");
+                v = rs.getString("Vat");
+                ta = rs.getString("Net_Amount");
+                tfdate.setText(""+d);
+                tfhosp.setText(""+h);
+                tfamt.setText(""+t);
+                tfvat.setText(""+v);
+                tffinal.setText(""+ta);
+            }
+            else {
+                JOptionPane.showMessageDialog(this,"Sorry No Records Found With Serial "+tts);
+            }
+        }
+        catch (ClassNotFoundException | SQLException e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new data_search().setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,8 +268,8 @@ public class data_search extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton clearbtn;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

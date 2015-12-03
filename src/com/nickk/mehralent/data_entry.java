@@ -192,11 +192,13 @@ public class data_entry extends javax.swing.JFrame {
 
     private void tfvatCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_tfvatCaretUpdate
         // TODO add your handling code here:
-        double finalam,vat,am;
+        double finalam,vat,am,fam;
         am = Double.parseDouble(tfamt.getText());
         vat = Double.parseDouble(tfvat.getText());
         finalam = (vat/100)*am;
-        tffinal.setText(""+finalam);
+        fam = am+finalam;
+        String a = ""+fam;
+        tffinal.setText(a);
     }//GEN-LAST:event_tfvatCaretUpdate
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
