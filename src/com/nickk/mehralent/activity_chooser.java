@@ -54,12 +54,17 @@ public class activity_chooser extends javax.swing.JFrame {
         jLabel2.setBounds(0, 50, 570, 60);
 
         jButton1.setText("I WANT TO ENTER DATA");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
-        jButton1.setBounds(10, 360, 250, 28);
+        jButton1.setBounds(10, 360, 250, 29);
 
         jButton2.setText("I WANT TO SEARCH");
         getContentPane().add(jButton2);
-        jButton2.setBounds(400, 360, 280, 28);
+        jButton2.setBounds(400, 360, 280, 29);
 
         jLabel3.setFont(new java.awt.Font("Cantarell", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(233, 255, 49));
@@ -118,6 +123,11 @@ public class activity_chooser extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new data_entry().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

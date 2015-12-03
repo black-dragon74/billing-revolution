@@ -9,7 +9,10 @@
  */
 package com.nickk.mehralent;
 
-/**
+import java.sql.DriverManager;
+import java.sql.*;
+import javax.swing.*;
+        /**
  *
  * @author nick
  */
@@ -38,14 +41,14 @@ public class data_entry extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        clearbtn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         tfserial = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        tfdate = new javax.swing.JTextField();
+        tfhosp = new javax.swing.JTextField();
+        tfamt = new javax.swing.JTextField();
+        tfvat = new javax.swing.JTextField();
+        tffinal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Enter New Data");
@@ -59,16 +62,21 @@ public class data_entry extends javax.swing.JFrame {
 
         jLabel4.setText("Enter the Total Amount");
 
-        jLabel5.setText("How Much Vat ?");
+        jLabel5.setText("How Much Vat ? Don't Include Percent");
 
         jLabel6.setText("Your Net Amount Is :");
 
         jButton1.setText("UPDATE DATA");
-
-        jButton2.setText("CLEAR EVERYTHING");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        clearbtn.setText("CLEAR EVERYTHING");
+        clearbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearbtnActionPerformed(evt);
             }
         });
 
@@ -79,17 +87,19 @@ public class data_entry extends javax.swing.JFrame {
             }
         });
 
-        tfserial.setText("jTextField1");
+        tfamt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                tfamtCaretUpdate(evt);
+            }
+        });
 
-        jTextField2.setText("jTextField2");
+        tfvat.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                tfvatCaretUpdate(evt);
+            }
+        });
 
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
+        tffinal.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,20 +114,20 @@ public class data_entry extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfserial)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField6)))
+                            .addComponent(tfdate)
+                            .addComponent(tfhosp)
+                            .addComponent(tfamt)
+                            .addComponent(tfvat)
+                            .addComponent(tffinal)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(clearbtn)
                         .addGap(53, 53, 53)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
@@ -132,27 +142,27 @@ public class data_entry extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfhosp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfamt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfvat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tffinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(clearbtn)
                     .addComponent(jButton3))
                 .addGap(22, 22, 22))
         );
@@ -161,17 +171,60 @@ public class data_entry extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void clearbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearbtnActionPerformed
         // TODO add your handling code here:
         dispose();
         new data_entry().setVisible(true);
         tfserial.requestFocus();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_clearbtnActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tfamtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_tfamtCaretUpdate
+        // TODO add your handling code here:
+        double fnla;
+        fnla = Double.parseDouble(tfamt.getText());
+        tffinal.setText(""+fnla);
+    }//GEN-LAST:event_tfamtCaretUpdate
+
+    private void tfvatCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_tfvatCaretUpdate
+        // TODO add your handling code here:
+        double finalam,vat,am;
+        am = Double.parseDouble(tfamt.getText());
+        vat = Double.parseDouble(tfvat.getText());
+        finalam = (vat/100)*am;
+        tffinal.setText(""+finalam);
+    }//GEN-LAST:event_tfvatCaretUpdate
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MainClass mc = new MainClass();
+       int Serial = Integer.parseInt(tfserial.getText());
+       String data,hosp;
+       data = tfdate.getText();
+       hosp = tfhosp.getText();
+       double amt,vat,famt;
+       amt = Double.parseDouble(tfamt.getText());
+       vat = Double.parseDouble(tfvat.getText());
+       famt = Double.parseDouble(tffinal.getText());
+       // Initiate Db Connection Now
+       try{
+           Class.forName(mc.cl);
+           Connection con  = DriverManager.getConnection(mc.url,mc.user,mc.pwd);
+           Statement stmt = con.createStatement();
+           String q;
+           q = "insert into main_data values('"+Serial+"','"+data+"','"+hosp+"','"+amt+"','"+vat+"','"+famt+"');";
+           stmt.executeUpdate(q);
+           JOptionPane.showMessageDialog(this,"Record Updated Successfully");
+           clearbtn.doClick();
+       }
+       catch (Exception e){
+           
+       }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,8 +262,8 @@ public class data_entry extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clearbtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -218,11 +271,11 @@ public class data_entry extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField tfamt;
+    private javax.swing.JTextField tfdate;
+    private javax.swing.JTextField tffinal;
+    private javax.swing.JTextField tfhosp;
     private javax.swing.JTextField tfserial;
+    private javax.swing.JTextField tfvat;
     // End of variables declaration//GEN-END:variables
 }
