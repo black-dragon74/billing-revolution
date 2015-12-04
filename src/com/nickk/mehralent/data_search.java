@@ -54,7 +54,7 @@ public class data_search extends javax.swing.JFrame {
         setTitle("Search For Data");
         setResizable(false);
 
-        jLabel1.setText("Enter The Serial Number");
+        jLabel1.setText("Enter The Billing Number");
 
         jLabel2.setText("Enter The Date");
 

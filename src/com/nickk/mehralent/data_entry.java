@@ -54,7 +54,7 @@ public class data_entry extends javax.swing.JFrame {
         setTitle("Enter New Data");
         setResizable(false);
 
-        jLabel1.setText("Enter The Serial Number");
+        jLabel1.setText("Enter The Bill Number");
 
         jLabel2.setText("Enter The Date");
 
