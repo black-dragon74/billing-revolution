@@ -40,7 +40,7 @@ public class user_creator extends javax.swing.JFrame {
         pbar = new javax.swing.JProgressBar();
         stats = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Create User");
         setResizable(false);
 

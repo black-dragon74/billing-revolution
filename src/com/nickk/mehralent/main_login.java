@@ -38,7 +38,7 @@ public class main_login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         pwdtf = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login or Die...");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {

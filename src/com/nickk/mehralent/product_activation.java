@@ -34,7 +34,7 @@ public class product_activation extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         code = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Activation Wizard");
         setResizable(false);
 

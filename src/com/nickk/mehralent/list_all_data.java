@@ -36,7 +36,7 @@ public class list_all_data extends javax.swing.JFrame {
         tbl = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("List of all the records");
         setResizable(false);
 
